@@ -1,0 +1,18 @@
+if there are x sticks left on your turn
+
+1 = loss
+2 = take 1
+3 = take 2
+4 = take 3
+5 = any (smart opponent = guaranteed loss)
+6 = take 1 (2 or 3 gives opponent guaranteed win)
+7 = take 2 (gives guaranteed win)
+8 = take 3 (gives guaranteed win)
+9 = any (smart opponent = guaranteed loss)
+
+
+
+n*4 + 1 = loss
+n*4 + 2 = take 1
+n*4 + 3 = take 2
+n*4 = take 3
