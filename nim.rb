@@ -2,9 +2,9 @@ require_relative 'functions.rb'
 
 def pvp()
 	puts ""
-	puts "Player 1, enter your name:"
+	puts "Player 1, say your name:"
 	player1_name = gets.chomp
-	puts "Player 2, enter your name:"
+	puts "Player 2 say your name:"
 	player2_name = gets.chomp
 	loop do
 
@@ -56,6 +56,72 @@ def pvp()
 
 			puts ""
 			puts "There are now #{sticks} sticks left"
+		end
+
+		puts "#{current_player_name} loses"
+		puts "Do you want to play again? (y/n)"
+		answer = gets.chomp.downcase
+		break unless answer == "y"
+	end
+end
+
+def pvp2d
+	puts ""
+	puts "Player 1, enter your name:"
+	player1_name = gets.chomp
+	puts "Player 2, enter your name:"
+	player2_name = gets.chomp
+	puts "How many piles"
+	max = gets.chomp.to_i
+	loop do
+
+		sticks = Array.new(0)
+		i = 0
+		while sticks.length < max
+			sticks.append(rand(1..14))
+			i += 1
+		end
+
+		turn = rand(1..2)
+		puts ""
+		puts "The piles are #{sticks}"
+
+		while #alla inte är tomma
+			if turn == 2
+				turn = 1
+			else
+				turn = 2
+			end
+      current_player_name = (turn == 1) ? player1_name : player2_name
+
+			puts "#{current_player_name}'s turn"
+
+			puts "what pile do you want to draw from" #ERRORHANTERING fel input och tom hög
+			pile = gets.chomp.to_i - 1
+			while (!(verify_pile(pile, max)))
+
+
+			if sticks[pile] < 3
+				puts "You can take between 1 and #{sticks[pile]} sticks"
+				puts "How many do you take"
+				input = gets.to_i
+				while (!(verify(input)) or (input > sticks[pile]))
+					puts "Invalid input, please input a number between 1 and #{sticks[pile]}"
+					input = gets.to_i
+				end
+			else
+				puts "You can take between 1 and 3 sticks"
+				puts "How many do you take"
+				input = gets.to_i
+				while !(verify(input))
+					puts "Invalid input, please input a number between 1 and 3"
+					input = gets.to_i
+				end
+			end
+			sticks[pile] -= input
+
+			puts ""
+			puts "The piles are now #{sticks}"
 		end
 
 		puts "#{current_player_name} loses"
@@ -150,7 +216,19 @@ def runner()
 	puts "Pvp or against a bot?"
 	mode = gets.chomp.downcase
 	if mode == "pvp"
-		pvp()
+		puts "1d or 2d"
+		type = gets.chomp.downcase
+		if type == "1d"
+			pvp()
+		elsif type == "2d"
+			pvp2d()
+		else
+			while (type != "1d") or (type != "2d")
+				puts "Invalid input"
+				puts "please choose 1d or 2d"
+				type = gets.chomp.downcase
+			end
+		end
 
 	elsif mode == "bot"
 		puts "Easy or hard?"

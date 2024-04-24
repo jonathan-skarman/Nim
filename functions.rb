@@ -17,3 +17,16 @@ def verify(input)
 	end
 	return true
 end
+
+def verify_pile(input, max)
+	if input != input.to_i
+		return false
+	elsif (input < 1) or (input > max)
+		return false
+	end
+	return true
+end
+
+def all_empty(arr)
+	#check if all indexes in arr == 0
+end

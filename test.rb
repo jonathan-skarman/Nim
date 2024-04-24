@@ -1,13 +1,10 @@
-p 1 % 4
+max = 5
 
-
-if input == "konami"  # Check for the Easter egg input
-	puts "You entered the Konami Code! You've unlocked a secret message!"
-	puts "Up, up, down, down, left, right, left, right, B, A, Start!"
-	puts "╭━━━┳━━━┳━╮╭━╮"
-	puts "┃╭━━┫╭━╮┃┃╰╯┃┃"
-	puts "┃╰━━┫╰━╯┃╭╮╭╮┃"
-	puts "┃╭━━┫╭╮╭┫┃┃┃┃┃"
-	puts "┃╰━━┫┃┃╰┫┃┃┃┃┃"
-	puts "╰━━━┻╯╰━┻╯╰╯╰╯"
+sticks = Array.new(0)
+i = 0
+while sticks.length < max
+	sticks.append(rand(1..14))
+	i += 1
 end
+
+p sticks

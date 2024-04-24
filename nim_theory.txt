@@ -16,3 +16,9 @@ n*4 + 1 = loss
 n*4 + 2 = take 1
 n*4 + 3 = take 2
 n*4 = take 3
+
+
+varje spelare har 5 högar (den vars tur det börjar har +1)
+man får ta pinnar från 1 av 3 slumpmässigt valda högar av sina 6 högar
+efter man tagit pinnar från högen "ger" man den högen till motståndaren
+om man har slut på någon av högarna förlorar man
