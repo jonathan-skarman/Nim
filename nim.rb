@@ -368,5 +368,4 @@ def runner()
 	end
 end
 
-#runner()
-pvp3d()
+runner()
