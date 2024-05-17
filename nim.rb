@@ -252,6 +252,10 @@ def pvp3d
 end
 
 def bot(input)
+	if input != "easy" and input != "hard"
+		raise "no difficulty selected 2"
+	end
+
 	loop do
 		sticks = rand(4..14)
 		turn = rand(1..2)
@@ -266,14 +270,26 @@ def bot(input)
 			end
 
 			if turn == 1
-				puts "You can take between 1 and 3 sticks"
+				if sticks >= 3
+					puts "You can take between 1 and 3 sticks"
+				else
+					puts "You can take between 1 and #{sticks} sticks"
+				end
 
 				puts "How many do you take"
-					input = gets.to_i
-					while !(verify(input))
-						puts "Invalid input, please input a number between 1 and 3"
+					sticks_taken = gets.to_i
+					if sticks >= 3
+						while !(verify(sticks_taken))
+							puts "Invalid input, please input a number between 1 and 3"
+							sticks_taken = gets.to_i
+						end
+					else
+						while (!(verify(sticks_taken))) or sticks_taken > sticks
+							puts "Invalid input, please input a number between 1 and #{sticks}"
+							sticks_taken = gets.to_i
+						end
 					end
-					sticks -= input
+					sticks -= sticks_taken
 				puts "There are now #{sticks} sticks left"
 				puts ""
 			else
@@ -297,7 +313,6 @@ def bot(input)
 		else
 			puts "You win"
 		end
-		puts "#{current_player_name} loses"
 		puts "Do you want to play again? (y/n)"
 		answer = gets.chomp.downcase
 		break unless answer == "y"
@@ -369,3 +384,5 @@ def runner()
 end
 
 runner()
+
+#O(användare)
